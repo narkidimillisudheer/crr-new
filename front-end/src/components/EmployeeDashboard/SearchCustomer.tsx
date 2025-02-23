@@ -144,11 +144,11 @@ const SearchCustomer = () => {
                     </Typography>
 
                     {/* Generate Suggestions Button (Only if the user is leaving) */}
-                    {/* {prediction === "Leaving" && ( */}
+                    {prediction === "Leaving" && (
                         <Button variant="contained" color="secondary" onClick={handleGenerateSuggestions} className="mt-4">
                             Generate Suggestions
                         </Button>
-                    {/* )} */}
+                    )}
                 </div>
             )}
         </div>
