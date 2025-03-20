@@ -5,7 +5,7 @@ import { footerLinks, socialMedia } from "../../constants";
 
 const Footer = () => (
   <section className={`${styles.flexCenter} flex-col ${styles.paddingY}`}>
-    <div className={`${styles.flexStart} md:flex-row flex-col mb-8 w-full`}>
+    {/* <div className={`${styles.flexStart} md:flex-row flex-col mb-8 w-full`}>
       <div className="flex-1 flex flex-col justify-start mr-10">
         <img
           src={logo}
@@ -42,7 +42,7 @@ const Footer = () => (
           </div>
         ))}
       </div>
-    </div>
+    </div> */}
 
     <div className="w-full flex justify-between flex-col md:flex-row items-center pt-6 border-t-[1px] border-gray-500">
       <p className="font-popins font-medium text-[18px] leading-[27px] text-white mb-4 text-center">

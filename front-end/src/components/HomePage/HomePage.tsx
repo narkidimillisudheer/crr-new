@@ -7,7 +7,6 @@ import {
   Billing,
   CardDeal,
   Testimonials,
-  Clients,
   CTA,
   Footer,
 } from "./";
@@ -33,7 +32,6 @@ const HomePage = () => (
         <Billing />
         <CardDeal />
         <Testimonials />
-        <Clients />
         <CTA />
         <Footer />
       </div>

@@ -12,33 +12,24 @@ const Hero = () => {
       <div
         className={`flex-1 ${styles.flexStart} flex-col xl:px-0 sm:px-16 px-6`}
       >
-        <div className="flex flex-row items-center py-[6px] px-4 bg-discount-gradient rounded-[10px] mc-2">
-          <img src={discount} alt="discount" className="w-[32px] h-[32px]" />
-          <p className={`${styles.paragraph} ml-2`}>
-            <span className="text-white">20%</span> Discount For{" "}
-            <span className="text-white">1 Month </span>
-            Account
-          </p>
-        </div>
-
         <div className="flex flex-row justify-between items-center w-full text-white">
-          <h1 className="flex-1 font-poppins font-semibold ss:text-[72px] text-[52px] ss:leading-[100px] leading-[75px]">
-            The Next <br className="sm:block hidden" />
-            <span className="text-gradient">Generation</span>
+          <h1 className="flex-1 font-poppins font-semibold ss:text-[44px] text-[40px] ss:leading-[100px] leading-[75px]">
+          The Future of  <br className="sm:block hidden" />
+            <span className="text-gradient">Customer Retention. </span>
           </h1>
-          <div className="flex-1 ss:flex hidden md:mr-4 mr-0">
+          <div className="flex-1 ss:flex hidden md:mr-8 mr-0">
             <GetStarted />
           </div>
         </div>
 
-        <h1 className="text-white flex-1 font-poppins font-semibold ss:text-[68px] text-[52px] ss:leading-[100px] leading-[75px]">
-          Payment Method.
+        <h1 className="text-white flex-1 font-poppins font-semibold ss:text-[44px] text-[52px] ss:leading-[100px] leading-[75px]">
+        Predict. Engage. Retain.
         </h1>
         <p className={`${styles.paragraph} mt-5 max-w-[470px]`}>
-          Our Team of Professional will help you to find the best payment
-          method. We examine your annual turnover, your target market and the
-          countries you want to operate in. Find the best credit card that fits
-          your needs.
+          Our intelligent system identifies customers likely to leave the bank 
+          and suggests tailored offers and recommendations to retain them. 
+          Leverage predictive analytics and feedback analysis to strengthen customer 
+          relationships and stay ahead in today's competitive banking environment.
         </p>
       </div>
 

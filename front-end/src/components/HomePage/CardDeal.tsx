@@ -7,13 +7,11 @@ const CardDeal = () => (
   <section className={layout.section}>
     <div className={layout.sectionInfo}>
       <h2 className={styles.heading2}>
-        Find a better card deal <br className="sm:block hidden" /> in few steps.
+      Get actionable customer <br className="sm:block hidden" /> retention insights in minutes.
       </h2>
       <p className={`${styles.paragraph} mt-5 max-w-[47-px]`}>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium
-        excepturi possimus molestiae aliquam similique quod facere fugiat velit,
-        tempora officia eligendi delectus aut id quaerat sapiente quis deleniti
-        est perferendis.
+      Easily identify customers likely to leave, view their behavior patterns, and receive AI-powered recommendations.  
+      Empower your team to take proactive measures and improve customer satisfaction — all through one smart dashboard.
       </p>
       <Button styles="mt-10"/>
     </div>

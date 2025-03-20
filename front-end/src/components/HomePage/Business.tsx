@@ -19,13 +19,14 @@ const Business = () => (
   <section id="features" className={layout.section}>
     <div className={layout.sectionInfo}>
       <h2 className={styles.heading2}>
-        You will do the Business, <br className="sm:block idden" /> We'll handle
-        the rest.
+      Focus on Your Customers, <br className="sm:block hidden" /> We’ll Help
+      Retain Them.
       </h2>
       <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-        You do the business, we'll handle the rest. Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Quisquam, voluptatum. L Your credit card
-        will be charged monthly for the amount of $29.99.
+      Our Customer Retention Radar uses predictive analytics and feedback
+        analysis to identify customers likely to leave. We help you engage them
+        with personalized offers, actionable insights, and proactive retention
+        strategies to strengthen relationships and reduce churn.
       </p>
       <Button styles="mt-10"/>
     </div>

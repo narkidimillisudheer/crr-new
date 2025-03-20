@@ -1,15 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import { Home, Notifications, Assessment, Inventory, Logout } from "@mui/icons-material";
+import { useEffect,useState } from "react";
 
 const SideBar = () => {
     const navigate = useNavigate();
     //const [darkMode, setDarkMode] = React.useState(false);
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const handleNavigation = (path: string) => {
         navigate(path);
     };
+    useEffect(()=>{
+        setUsername(localStorage.getItem("userName") || "user");
+        setEmail(localStorage.getItem("userEmail") || "sampleuser@gmail.com");
+    },[]);
     const handleLogout = () => {
         console.log("Logging out...");
+        localStorage.removeItem("userName");
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("token");
         navigate("/");
     };
 
@@ -19,8 +29,8 @@ const SideBar = () => {
             <div className="flex items-center gap-3 mb-5">
                 <img src="https://i.ibb.co/YT3qh9VH/user-image-blue-2.png" alt="Profile" className="w-10 h-10 rounded-full" />
                 <div>
-                    <h2 className="text-lg font-semibold">Duck UI</h2>
-                    <p className="text-sm text-gray-500">duckui@demo.com</p>
+                    <h2 className="text-lg font-semibold">{username}</h2>
+                    <p className="text-sm text-gray-500">{email}</p>
                 </div>
             </div>
 
@@ -44,9 +54,9 @@ const SideBar = () => {
                 <Button startIcon={<Assessment />} onClick={() => handleNavigation("/search-customer")} fullWidth className="justify-start text-black">
                     Search Users
                 </Button>
-                <Button startIcon={<Inventory />} fullWidth className="justify-start text-black">
+                {/* <Button startIcon={<Inventory />} fullWidth className="justify-start text-black">
                     Inventory
-                </Button>
+                </Button> */}
             </nav>
 
             {/* Bottom Section */}

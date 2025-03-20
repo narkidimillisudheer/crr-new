@@ -8,11 +8,11 @@ const CTA = () => (
   >
     <div className="flex flex-col flex-1">
       <h2 className={styles.heading2}>
-        Let's Try Our Service Now! <br />
+      Start Retaining Customers Today! <br />
       </h2>
       <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit Quisquam,
-        voluptatum?
+      Discover which customers are at risk and take action with smart recommendations.  
+      Boost loyalty, improve engagement, and make data-backed decisions — all in one place.
       </p>
     </div>
     <div>

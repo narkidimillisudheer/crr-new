@@ -12,13 +12,12 @@ const Testimonials = () => (
       className={`w-full full justify-between items-center md:flex-row flex-col sm:mb-16 mb-6 relative z-[1]`}
     >
       <h1 className={styles.heading2}>
-        What people are <br className="sm:block hidden" /> saying about us
+      What our users <br className="sm:block hidden" /> say about us
       </h1>
       <div className={`w-full md:mt-0 mt-6`}>
-        <p className={`${styles.paragraph} text-left max-w-[470px]`}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque,
-          quisquam aliquid. Nihil, necessitatibus! Dolorum excepturi
-          repellendus, in sapiente fuga quod!
+        <p className={`${styles.paragraph} text-left max-w-[690px]`}>
+        Our platform has helped teams proactively engage with customers, reduce churn, and make data-driven decisions.  
+        See how businesses are using Customer Retention Radar to stay one step ahead and build stronger relationships.
         </p>
       </div>
     </div>

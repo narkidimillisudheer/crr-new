@@ -31,52 +31,54 @@ export const features = [
   {
     id: "feature-1",
     icon: star,
-    title: "Rewards",
+    title: "Predictive Analytics",
     content:
-      "The best credit cards offer some tantalizing combinations of promotions and prizes",
+      "Utilize machine learning models to accurately predict customers likely to leave and address churn proactively.",
   },
   {
     id: "feature-2",
     icon: shield,
-    title: "100% Secured",
+    title: "Secure Data Insights",
     content:
-      "We take proactive steps make sure your information and transactions are secure.",
+      "Your customer data is handled with utmost security while providing actionable insights for retention strategies.",
   },
   {
     id: "feature-3",
     icon: send,
-    title: "Balance Transfer",
+    title: "Personalized Recommendations",
     content:
-      "A balance transfer credit card can save you a lot of money in interest charges.",
+      "Generate real-time, sentiment-based suggestions and tailored offers to re-engage customers at risk of attrition.",
   },
 ];
+
 
 export const feedback = [
   {
     id: "feedback-1",
     content:
-      "Money is only a tool. It will take you wherever you wish, but it will not replace you as the driver.",
+      "The Retention Radar helped us identify customers at risk and retain them with timely offers. A game-changer!",
     name: "Herman Jensen",
-    title: "Founder & Leader",
+    title: "Branch Manager, ABC Bank",
     img: people01,
   },
   {
     id: "feedback-2",
     content:
-      "Money makes your life easier. If you're lucky to have it, you're lucky.",
+      "Thanks to predictive analytics, we’ve reduced churn and improved customer loyalty like never before.",
     name: "Steve Mark",
-    title: "Founder & Leader",
+    title: "Customer Success Head, XYZ Bank",
     img: people02,
   },
   {
     id: "feedback-3",
     content:
-      "It is usually people in the money business, finance, and international trade that are really rich.",
+      "The recommendation engine provided actionable insights that transformed our retention strategy.",
     name: "Kenn Gallagher",
-    title: "Founder & Leader",
+    title: "Director, Customer Relations",
     img: people03,
   },
 ];
+
 
 export const stats = [
   {
