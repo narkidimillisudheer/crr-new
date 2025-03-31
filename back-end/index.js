@@ -46,7 +46,7 @@ app.post("/signup", async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   await usersCollection.insertOne({ email, name, password: hashedPassword });
 
-  res.status(201).json({ message: "User created successfully" });
+  res.status(201).json({ message: "User created successfully",hashedPassword });
 });
 
 // Login Route
@@ -215,6 +215,100 @@ app.get("/get-all-users", async (req, res) => {
   }
 });
 
+//api route for fetch all transactions based on the customer id,customer id will come in the request
+app.get("/get-all-transactions/", authMiddleware, async (req, res) => {
+  const userId = req.user;
+  try {
+    const collection = db.collection("transactions");
+    const transactions = await collection
+      .find({ customer_id: new ObjectId(userId.userId) })
+      .toArray();
+    if (!transactions.length) {
+      return res
+        .status(404)
+        .json({ message: "No transactions found for this customer." });
+    }
+    const formattedTransactions = transactions.map((txn) => ({
+      transaction_id: txn._id,
+      date: txn.date,
+      amount: txn.amount,
+      feedback: txn.feedback || "No feedback provided",
+      category: txn.category || "General",
+    }));
+    res.json(formattedTransactions);
+  } catch (error) {
+    console.error("Error fetching transactions:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+//write two routes one is for adding trasaction data in the trasaction db and modifying the amount key in users database
+app.post("/add-transaction", authMiddleware, async (req, res) => {
+  const { amount, category } = req.body;
+  const {userId} = req.user;
+  try {
+    const date = new Date();
+    const collection = db.collection("transactions");
+    const usersCollection = db.collection("users");
+    const customerObjectId = new ObjectId(userId);
+    // Insert transaction into transactions collection
+    const transaction = {
+      customer_id: customerObjectId,
+      date,
+      amount,
+      category
+    };
+    await collection.insertOne(transaction);
+    // Update user's total transaction amount in users collection
+    const user = await usersCollection.findOne({ _id: customerObjectId });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    let updatedTransactionAmount;
+    if(category !== "Deposit"){
+    updatedTransactionAmount =
+      user.balance ?? 10000 - amount;
+    }else{
+    updatedTransactionAmount =
+      user.balance ?? 10000 + amount;
+    }
+    await usersCollection.updateOne(
+      { _id: customerObjectId },
+      { $set: { balance: updatedTransactionAmount } }
+    );
+    //return transaction id and updated balance
+    res.json({
+      message: "Transaction added successfully",
+      transactionId: transaction._id,
+      balance: updatedTransactionAmount,
+    });
+  } catch (error) {
+    console.error("Error adding transaction:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+//this toute for updating the ffedback based on the trasaction id
+app.post("/update-feedback", async (req, res) => {
+  const { transactionId, feedback } = req.body;
+  try {
+    const collection = db.collection("transactions");
+    const transactionObjectId = new ObjectId(transactionId);
+    // Update feedback in transactions collection
+    const result = await collection.updateOne(
+      { _id: transactionObjectId },
+      { $set: { feedback } }
+    );
+    if (result.modifiedCount === 0) {
+      return res.status(404).json({ error: "Transaction not found" });
+    }
+    res.status(200).json({ message: "Feedback updated successfully" });
+  } catch (error) {
+    console.error("Error updating feedback:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 app.get("/predict-customers", async (req, res) => {
   try {
     const collection = db.collection("users");
@@ -292,7 +386,6 @@ app.get("/predict-customers", async (req, res) => {
       { category: "Leaving", count: leavingCount },
       { category: "Staying", count: stayingCount },
     ];
-    console.log(responseCustomers);
     res.json({ customers: responseCustomers, chartData });
   } catch (error) {
     console.error("Error:", error);
@@ -303,10 +396,8 @@ app.get("/predict-customers", async (req, res) => {
 //create one new route same like predict-customers but in this route all the attributes will come from the front end and then we will call the fastapi model to get the prediction
 app.post("/predict-single-customer", async (req, res) => {
   try {
-    console.log(req.body);
     const { customerData } = req.body;
     let customer = customerData;
-    console.log("Customer Data:", customer);
     const customerDataUpdated = {
       name: customer.name,
       Customer_Age: customer.age,
@@ -357,7 +448,6 @@ app.post("/predict-single-customer", async (req, res) => {
 });
 
 app.get("/get-feedbacks/:id", async (req, res) => {
-  console.log("Received request for feedbacks with ID:", req.body);
   try {
     const customerId = req.params.id;
     const transactionsCollection = db.collection("transactions");
@@ -412,7 +502,6 @@ app.get("/generate-suggestions/:customerId", async (req, res) => {
     category: fb.category || "General",
     feedback: fb.feedback || "No feedback provided",
   }));
-  console.log("Feedbacks:", feedbacks);
   // Construct prompt for Google Gemini API
   const prompt = `
   The following are feedbacks from a bank customer. Generate **personalized offers** to retain the customer:
@@ -430,12 +519,9 @@ app.get("/generate-suggestions/:customerId", async (req, res) => {
   try {
     // Call Google Gemini API
     const result = await model.generateContent(prompt);
-    console.log("Result:", result);
     let responseText = result.response.text();
-    //console.log("Response Text:", responseText);
     responseText = responseText.replace(/```json|```/g, "").trim();
     const suggestions = JSON.parse(responseText);
-    //console.log("Suggestions:", suggestions);
     res.json({ improvements: suggestions });
   } catch (error) {
     console.error("Error calling Google Gemini API:", error.message);

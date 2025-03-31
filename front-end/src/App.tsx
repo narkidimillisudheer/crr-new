@@ -8,7 +8,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import DashboardLayoutBranding from "./components/DashboardLayoutBranding";
 import CustomerForm from "./components/EmployeeDashboard/CustomerForm";
 import SearchCustomer from "./components/EmployeeDashboard/SearchCustomer";
-
+import CustomerDashboard from "./components/CustomerDashboard/CustomerDashboard";
 
 function App() {
   return (
@@ -17,13 +17,14 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/customer-login" element={<CustomerLogin />} />
         <Route path="/employee-login" element={<EmployeeLogin />} />
-
+        {/* Public Routes */}
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
             <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
             <Route path="/feedback/:customerId" element={<FeedbackPage />} />
             <Route path="/customer-form" element={<CustomerForm />} />
             <Route path="/search-customer" element={<SearchCustomer />} />
+            <Route path="/customer-dashboard" element={<CustomerDashboard />} />
         </Route>
         <Route path="/dashboard" element={<DashboardLayoutBranding />} />
       </Routes>

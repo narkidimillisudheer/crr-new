@@ -27,7 +27,7 @@ const Login: React.FC = () => {
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("userEmail", res.data.email);
                 localStorage.setItem("userName", res.data.username);
-                navigate("/dashboard");
+                navigate("/customer-dashboard");
             } else {
                 setErrorMessage(res.data.message);
                 setOpen(true);
